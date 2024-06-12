@@ -1,0 +1,12 @@
+:host {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.mat-toolbar {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}

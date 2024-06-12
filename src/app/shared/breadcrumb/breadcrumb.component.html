@@ -1,0 +1,16 @@
+<div *ngIf="!showBreadcrumbs" class="breadcrumbs-container">
+  <button (click)="goBack()" mat-icon-button color="primary" style="vertical-align: middle" matTooltip="Volver">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <ng-container *ngFor="let breadcrumb of breadcrumbs$ | async; let last = last">
+    <mat-chip [ngClass]="{ 'last-chip': last, 'breadcrumb-chip': true }" style="vertical-align: middle">
+      <a [href]="'#' + breadcrumb.url">
+        {{ breadcrumb.label === 'Personajes' ? 'Personajes del ' + breadcrumb.params : breadcrumb.label }}
+      </a>
+    </mat-chip>
+    <ng-container *ngIf="!last">
+      <span class="breadcrumb-separator" style="vertical-align: middle">></span>
+    </ng-container>
+  </ng-container>
+</div>

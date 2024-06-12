@@ -1,0 +1,60 @@
+<div class="table-container" *ngIf="!hasChildRoute(); else rout">
+  <mat-card class="custom-card">
+    <mat-card-header>
+      <mat-card-title>Listado de Episodios</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="isLoading; else content">
+      <div class="table-responsive" style="max-height: 60vh">
+        <mat-table [dataSource]="datosPaginados">
+          <mat-header-row *matHeaderRowDef="displayedColumns" class="fixed-headers"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.name }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="air_date">
+            <mat-header-cell *matHeaderCellDef>Fecha de Estreno</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.air_date }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="episode">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Episodio</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.episode }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="characters">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Personajes</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button mat-mini-fab color="blue" aria-label="Example icon button with a delete icon">
+                <a routerLink="characters/{{ row.id }}" [queryParams]="{ param: row.episode }"
+                  ><mat-icon>groups_2</mat-icon></a
+                >
+              </button>
+            </mat-cell>
+          </ng-container>
+        </mat-table>
+      </div>
+      <div class="no-data" *ngIf="datosTotales.length <= 0">
+        <h1>No Hay Registros</h1>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <mat-paginator
+        [length]="totalDatos"
+        [pageSizeOptions]="[10, 25, 50]"
+        [pageSize]="itemsPorPagina"
+        (page)="onPageChange($event)"
+        (pageSizeOptionsChange)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<ng-template #content>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
+<ng-template #rout>
+  <router-outlet></router-outlet>
+</ng-template>

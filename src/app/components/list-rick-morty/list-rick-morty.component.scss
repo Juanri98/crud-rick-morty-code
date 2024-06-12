@@ -1,0 +1,27 @@
+mat-table {
+  width: 80%;
+}
+
+.custom-card {
+  min-width: 80%;
+  margin: 0 auto;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  margin: 0 auto;
+}
+
+.fixed-headers {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+}

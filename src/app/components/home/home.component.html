@@ -1,0 +1,10 @@
+<div class="contain" *ngIf="isHomeRoute; else rout">
+  <p style="color: white; text-align: center">
+    Bienvenido a la plataforma de episodios de Rick & Morty, donde puede ver un listado de todos los episodios, ver los
+    personajes que participaron en dicho episodio, además de poder agregar a favoritos sus personajes preferidos.
+  </p>
+  <img src="https://fondosmil.com/fondo/27334.jpg" alt="Rick & Morty" />
+</div>
+<ng-template #rout>
+  <router-outlet></router-outlet>
+</ng-template>

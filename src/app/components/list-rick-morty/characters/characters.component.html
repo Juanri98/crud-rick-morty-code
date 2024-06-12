@@ -1,0 +1,33 @@
+<h1 style="text-align: center">Personajes</h1>
+<div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="isLoading; else content">
+  <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let character of dataCharacters">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div
+          mat-card-avatar
+          [style.background-image]="'url(' + character.image + ')'"
+          style="background-size: cover"
+        ></div>
+        <mat-card-title>{{ character.name }}</mat-card-title>
+        <mat-card-subtitle>{{ character.status }}</mat-card-subtitle>
+        <button
+          style="cursor: pointer"
+          class="favorite-button"
+          (click)="toggleFavorite(character)"
+          matTooltip="{{ isFavorite(character) ? 'Quitar de Favoritos' : 'Agregar a Favoritos' }}"
+        >
+          <mat-icon [class]="isFavorite(character) ? 'star-filled' : 'star-outline'">star</mat-icon>
+        </button>
+      </mat-card-header>
+      <img class="mt-2 mb-2" [src]="character.image" [alt]="character.name" />
+      <mat-card-content>
+        <h4 style="color: white">Especie: {{ character.species }}</h4>
+        <h4 style="color: white">Género: {{ character.gender }}</h4>
+        <small style="color: white">Fecha de Creación: {{ character.created | date }}</small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<ng-template #content>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

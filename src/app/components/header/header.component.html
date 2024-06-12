@@ -1,0 +1,23 @@
+<mat-toolbar class="mat-elevation-z8">
+  <a routerLink="home" class="pointer-link">
+    <span><mat-icon>sports_esports</mat-icon>Rick & Morty Episodios</span>
+  </a>
+  <div class="space"></div>
+
+  <div *ngIf="!isAuthenticated">
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel2">
+      <a routerLink="login" mat-tab-link color="accent"> Login </a>
+      <a routerLink="register" mat-tab-link> Registrarse </a>
+    </nav>
+    <mat-tab-nav-panel #tabPanel2></mat-tab-nav-panel>
+  </div>
+  <div *ngIf="isAuthenticated">
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+      <a routerLink="home" mat-tab-link> Home </a>
+      <a routerLink="/home/episodes" mat-tab-link> Episodios </a>
+      <a routerLink="/home/favorites" mat-tab-link> Favoritos </a>
+      <a routerLink="logout" mat-tab-link> Cerrar Sesión - {{ this.email }} </a>
+    </nav>
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+  </div>
+</mat-toolbar>

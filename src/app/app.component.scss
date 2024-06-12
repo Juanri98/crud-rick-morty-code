@@ -1,0 +1,10 @@
+.content {
+  min-height: calc(100vh - 65px);
+  margin-bottom: -65px;
+  padding-bottom: 65px;
+}
+
+app-footer {
+  position: relative;
+  z-index: 100;
+}
